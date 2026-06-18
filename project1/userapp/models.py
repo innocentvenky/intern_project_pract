@@ -4,7 +4,7 @@ import uuid
 # Create your models here.
 class Register(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    frist_name = models.CharField(max_length=50)
+    first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField()
     password = models.CharField(max_length= 20)
@@ -20,4 +20,4 @@ class Register(models.Model):
     gender = models.CharField(max_length=10, choices=gender_choices)
     pincode = models.IntegerField()
     def __str__(self):
-        return self.name
+        return self.first_name
