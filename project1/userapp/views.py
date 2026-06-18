@@ -1,3 +1,4 @@
+
 from django.shortcuts import render
 
 from userapp.models import Register
@@ -16,3 +17,22 @@ def register(request):
         pincode=request.POST.get('pincode')
         Register.objects.create(first_name=first_name, last_name=last_name,email=email,password=password,date_of_birth=date_of_birth,phone_number=phone_number,state=state,city=city,gender=gender,pincode=pincode)
     return render(request,'registration.html')
+
+def login(request):
+    if request.method=='POST':
+        email=request.POST.get('email')
+        password=request.POST.get('password')
+        user = Register.objects.get(
+            email=email,
+            password=password
+        )
+        if user:
+            return redirect('/home/')
+        else:
+            return render(request,'login.html',{'error':'Invalid email or password'})
+    return render(request,'login.html')
+
+def home(request):
+    return render(request,'home.html')
+    
+
