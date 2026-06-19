@@ -19,5 +19,6 @@ from django.urls import path
 from userapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/',views.login)
+    path('login/',views.login),
+    
 ]
