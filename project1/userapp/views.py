@@ -1,5 +1,5 @@
 
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
 from userapp.models import Register
 # Create your views here.
@@ -9,7 +9,7 @@ def register(request):
         last_name=request.POST.get('last_name')
         email=request.POST.get('email')
         password=request.POST.get('password')
-        date_of_birth=request.POST.get('date_of_birthy')
+        date_of_birth=request.POST.get('date_of_birth')
         phone_number=request.POST.get('phone_number')
         state=request.POST.get('state')
         city=request.POST.get('city')
@@ -22,17 +22,17 @@ def login(request):
     if request.method=='POST':
         email=request.POST.get('email')
         password=request.POST.get('password')
-        user = Register.objects.get(
-            email=email,
-            password=password
-        )
-        if user:
-            return redirect('/home/')
-        else:
-            return render(request,'login.html',{'error':'Invalid email or password'})
+        try :
+            user = Register.objects.get(
+                email=email,
+                password=password
+            )
+            return redirect('success/')
+        except Register.DoesNotExist:
+            return redirect('login/',{'error':'Invalid email or password'})
     return render(request,'login.html')
-
-def home(request):
-    return render(request,'home.html')
+        
+def success(request):
+    return render(request,'success.html')
     
 
