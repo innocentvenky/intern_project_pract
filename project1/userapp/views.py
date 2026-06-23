@@ -8,7 +8,7 @@ def register(request):
         last_name=request.POST.get('last_name')
         email=request.POST.get('email')
         password=request.POST.get('password')
-        date_of_birth=request.POST.get('date_of_birthy')
+        date_of_birth=request.POST.get('date_of_birth')
         phone_number=request.POST.get('phone_number')
         state=request.POST.get('state')
         city=request.POST.get('city')
